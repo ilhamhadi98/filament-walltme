@@ -17,7 +17,7 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
 
     public static function form(Form $form): Form
     {
@@ -27,7 +27,8 @@ class CategoryResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Toggle::make('is_expense')
-                    ->required(),
+                    ->required()
+                    ->label('Is this an expense?'),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required(),
@@ -42,7 +43,8 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_expense')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Is this an expense?'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
