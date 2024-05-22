@@ -44,7 +44,11 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_expense')
                     ->boolean()
-                    ->label('Is this an expense?'),
+                    ->trueIcon('heroicon-c-arrow-up-circle')
+                    ->trueColor('danger')
+                    ->falseIcon('heroicon-c-arrow-down-circle')
+                    ->falseColor('success')
+                    ->label('In/Out'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
