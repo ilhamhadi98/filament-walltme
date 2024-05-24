@@ -29,8 +29,10 @@ CREATE TABLE `cache` (
 /*Data for the table `cache` */
 
 insert  into `cache`(`key`,`value`,`expiration`) values 
-('a17961fa74e9275d529f489537f179c05d50c2f3','i:1;',1716396511),
-('a17961fa74e9275d529f489537f179c05d50c2f3:timer','i:1716396511;',1716396511);
+('356a192b7913b04c54574d18c28d46e6395428ab','i:1;',1716466122),
+('356a192b7913b04c54574d18c28d46e6395428ab:timer','i:1716466122;',1716466122),
+('a17961fa74e9275d529f489537f179c05d50c2f3','i:1;',1716462496),
+('a17961fa74e9275d529f489537f179c05d50c2f3:timer','i:1716462496;',1716462496);
 
 /*Table structure for table `cache_locks` */
 
@@ -44,6 +46,30 @@ CREATE TABLE `cache_locks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `cache_locks` */
+
+/*Table structure for table `categories` */
+
+DROP TABLE IF EXISTS `categories`;
+
+CREATE TABLE `categories` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `is_expense` tinyint(1) NOT NULL DEFAULT 1,
+  `image` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `categories` */
+
+insert  into `categories`(`id`,`name`,`is_expense`,`image`,`created_at`,`updated_at`,`deleted_at`) values 
+(2,'Transportation',1,'01HYGR0PBPFESD64S4K3WZQGRR.png','2024-05-22 18:11:34','2024-05-22 18:14:32',NULL),
+(3,'Salary',0,'01HYGRB403FP5P79MKGGEHW9Q7.png','2024-05-22 18:17:16','2024-05-22 18:17:16',NULL),
+(4,'House Rent',1,'01HYGRCWA6D52WJTZRYCMMPK2J.png','2024-05-22 18:18:13','2024-05-22 18:18:13',NULL),
+(5,'Food and Drink',1,'01HYGRFGB7AMJ01AF32DCTA9R4.png','2024-05-22 18:19:39','2024-05-22 18:19:39',NULL),
+(6,'Donation',1,'01HYGRGDKF9HZQZWQYK3SYDS9P.png','2024-05-22 18:20:09','2024-05-22 18:20:24',NULL);
 
 /*Table structure for table `failed_jobs` */
 
@@ -110,14 +136,17 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
 insert  into `migrations`(`id`,`migration`,`batch`) values 
 (1,'0001_01_01_000000_create_users_table',1),
 (2,'0001_01_01_000001_create_cache_table',1),
-(3,'0001_01_01_000002_create_jobs_table',1);
+(3,'0001_01_01_000002_create_jobs_table',1),
+(4,'2024_05_22_175952_create_categories_table',2),
+(5,'2024_05_22_183910_create_transactions_table',3),
+(6,'2024_05_23_115556_rename_date_column_in_transactions_table',4);
 
 /*Table structure for table `password_reset_tokens` */
 
@@ -151,7 +180,35 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('2FUwJHqcXBBVJV4svLCB6w4AvCrBhbSvYIpezJPb',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoicEZhMGNzaGpCSXlIZk81N3JvRXFpRUJyZTFQVm5DM1U4RG5xWXVPZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbiI7fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTIkaUF1QVFRbW9idjVhL0lvMC56U3RZLnoxRFVySC5xMTBwUGNGSXZlR2JLaC5yNzFpcWlvZnEiO30=',1716396451);
+('8SnlmFbKL4P4VMJssEIIXZg5629NDCpUr3sANUEH',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUUtOVFV1NTB6dEhjQnFBcjEzWjJ0Nm5KWmZEMk91VWhWSGg0dnpxeiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM4OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYWRtaW4vY2F0ZWdvcmllcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMiRpQXVBUVFtb2J2NWEvSW8wLnpTdFkuejFEVXJILnExMHBQY0ZJdmVHYktoLnI3MWlxaW9mcSI7fQ==',1716462353),
+('MDKN9Po6v38UL8p9M1zjqg59ZxQuRi6wfBhIY2wT',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiU3ZoQ2FCc1JoNHFNN1ZuZFo3MkdFVVZucFRUd0hLN3k4TENKeDA1ZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi90cmFuc2FjdGlvbnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJGlBdUFRUW1vYnY1YS9JbzAuelN0WS56MURVckgucTEwcFBjRkl2ZUdiS2gucjcxaXFpb2ZxIjt9',1716462155),
+('YW3h9C0fzAYdOTG9GzNQit05DXpEjjfirtdIjfTo',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiWHpWNU5YWmVhVmFpbExoTWd5NE5iNnIyM0lNUjNOWGduNzBiYnU0dyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYWRtaW4vdHJhbnNhY3Rpb25zIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJGlBdUFRUW1vYnY1YS9JbzAuelN0WS56MURVckgucTEwcFBjRkl2ZUdiS2gucjcxaXFpb2ZxIjtzOjg6ImZpbGFtZW50IjthOjA6e319',1716472956);
+
+/*Table structure for table `transactions` */
+
+DROP TABLE IF EXISTS `transactions`;
+
+CREATE TABLE `transactions` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `category_id` bigint(20) unsigned NOT NULL,
+  `date_transaction` date NOT NULL,
+  `amount` int(11) NOT NULL,
+  `note` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `transactions_category_id_foreign` (`category_id`),
+  CONSTRAINT `transactions_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `transactions` */
+
+insert  into `transactions`(`id`,`name`,`category_id`,`date_transaction`,`amount`,`note`,`image`,`created_at`,`updated_at`) values 
+(1,'Sedekah',6,'2024-05-23',10000,'Ke Masjid','01HYGTAWHAN4CZ1ZET9YNBPQPE.png','2024-05-22 18:52:05','2024-05-22 18:52:05'),
+(2,'Gajian Mei',3,'2024-05-23',4200000,'Salary Crediting AMC','01HYGV14TZQMKNCXB7FMZXZ181.png','2024-05-22 19:04:14','2024-05-22 19:07:43'),
+(3,'Lunch',5,'2024-05-23',30000,'MCD Delivery','01HYJNK7277E15VPMG52X9MCMW.png','2024-05-23 12:07:44','2024-05-23 12:08:25');
 
 /*Table structure for table `users` */
 

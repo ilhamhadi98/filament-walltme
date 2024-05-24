@@ -25,6 +25,7 @@ use App\Filament\Resources\TransactionResource\RelationManagers;
 use App\Filament\Resources\TransactionResource\Pages\EditTransaction;
 use App\Filament\Resources\TransactionResource\Pages\ListTransactions;
 use App\Filament\Resources\TransactionResource\Pages\CreateTransaction;
+use Carbon\Carbon;
 
 class TransactionResource extends Resource
 {
@@ -42,7 +43,7 @@ class TransactionResource extends Resource
                 Forms\Components\Select::make('category_id')
                     ->required()
                     ->relationship('category', 'name'),
-                Forms\Components\DatePicker::make('date')
+                Forms\Components\DatePicker::make('date_transaction')
                     ->required(),
                 Forms\Components\TextInput::make('amount')
                     ->required()
@@ -74,13 +75,10 @@ class TransactionResource extends Resource
                     ->falseIcon('heroicon-c-arrow-down-circle')
                     ->falseColor('success')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('date')
-                    ->date()
-                    ->since()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('amount')
                     ->numeric()
                     ->money('IDR')
+                    ->description(fn (Transaction $record): string => 'At ' . Carbon::parse($record->date_transaction)->diffForHumans())
                     ->sortable(),
                 Tables\Columns\TextColumn::make('note')
                     ->searchable()
@@ -96,7 +94,7 @@ class TransactionResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('date', 'desc')
+            ->defaultSort('date_transaction', 'desc')
             ->filters([
                 //
             ])
